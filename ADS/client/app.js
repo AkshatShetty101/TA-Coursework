@@ -1,8 +1,5 @@
-import {MDCRipple} from '@material/ripple';
-import {MDCTextField} from '@material/textfield';
+import {MDCTopAppBar} from '@material/top-app-bar/index';
+import {MDCTabBar} from '@material/tab-bar';
 
-const username = new MDCTextField(document.querySelector('.username'));
-const password = new MDCTextField(document.querySelector('.password'));
-
-new MDCRipple(document.querySelector('.cancel'));
-new MDCRipple(document.querySelector('.next'));
+const topAppBar = new MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
+const tabBar = new MDCTabBar(document.querySelector('.mdc-tab-bar'));
