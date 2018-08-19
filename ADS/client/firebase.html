@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+<div id="test">
+
+</div>
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-functions.js"></script>
+
+    <!-- Comment out (or don't include) services that you don't want to use -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script> -->
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA6rgyF62FhuV--3T3H0uREeSL8YrDJIAA",
+            authDomain: "ads-orders.firebaseapp.com",
+            databaseURL: "https://ads-orders.firebaseio.com",
+            projectId: "ads-orders",
+            storageBucket: "ads-orders.appspot.com",
+            messagingSenderId: "949999655001"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+        function writeUserData(orderId, boots, personId) {
+            firebase.database().ref().push({
+                id: orderId,
+                time: new Date().toISOString(),
+                boots,
+                personId
+            });
+            console.log('Order is added');
+        }
+
+        function getOrderById(orderId) {
+            firebase.database().ref().orderByChild("id").equalTo(orderId).once('value').then((data) => {
+                console.log(data.val());
+            });
+        }
+
+        function getOrdersOfPerson(personId) {
+            myOrders = [];
+            firebase.database().ref().orderByChild("personId").equalTo('akshatshetty2908@gmail.com').on('value', (data) => {
+                document.getElementById('test').innerHTML = JSON.stringify(data.val()); 
+                console.log(data.val());
+            });
+        }
+
+        function getAllOrderData() {
+            firebase.database().ref().once('value').then((data) => {
+                console.log(data.val());
+            })
+        }
+        getOrdersOfPerson('akshatshetty2908@gmail.com');
+    </script>
+</body>
+
+</html>
