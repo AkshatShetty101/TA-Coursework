@@ -11,12 +11,15 @@
 
 <body>
 
-<div id="test">
+    <div id="test">
 
-</div>
+    </div>
+    <input type="file" name="fs" id="fileupload" />
+    <button type="button" onclick="lick()" id="done-button">Convert to Blob (look in the console)</button>
+
     <!-- Firebase App is always required and must be first -->
     <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-app.js"></script>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!-- Add additional services that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-database.js"></script>
@@ -28,7 +31,33 @@
     <!-- <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script> -->
 
     <script>
-        // Initialize Firebase
+        function lick() {
+            // var oReq = new XMLHttpRequest();
+            // oReq.open("POST", url, true);
+            // oReq.onload = function (oEvent) {
+            //     // Uploaded.
+            // };
+            var file = $('#fileupload')[0].files[0];
+            console.log(file);
+            // var formData = new FormData();
+            // formData.append(file);
+            $.ajax({
+                url: "http://localhost:8080/a",
+                type: "POST",
+                crossDomain: true,
+                data: file,
+                processData: false,
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response);
+                    // .. do something
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage); // Optional
+                }
+            });
+        }
+
         var config = {
             apiKey: "AIzaSyA6rgyF62FhuV--3T3H0uREeSL8YrDJIAA",
             authDomain: "ads-orders.firebaseapp.com",
@@ -58,7 +87,7 @@
         function getOrdersOfPerson(personId) {
             myOrders = [];
             firebase.database().ref().orderByChild("personId").equalTo('akshatshetty2908@gmail.com').on('value', (data) => {
-                document.getElementById('test').innerHTML = JSON.stringify(data.val()); 
+                document.getElementById('test').innerHTML = JSON.stringify(data.val());
                 console.log(data.val());
             });
         }
