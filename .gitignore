@@ -1,2 +1,7 @@
+# Personal Preferences
+
 node_modules/
 .idea/
+
+# Executables
+!*.*
