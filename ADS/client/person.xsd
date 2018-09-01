@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="https://www.w3schools.com"
+xmlns="https://www.w3schools.com"
+elementFormDefault="qualified">
+
+<xs:complexType name="personinfo">
+  <xs:sequence>
+    <xs:element name="email" type="xs:string" maxOccurs="1"/>
+    <xs:element name="name" type="xs:string" maxOccurs="1"/>
+    <xs:element name="password" type="xs:string" maxOccurs="1"/>
+    <xs:element name="orders" maxOccurs="1">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="order" type="xs:string" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:complexType> 
+    </xs:element>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:element name="personstore">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="person" type="personinfo" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>

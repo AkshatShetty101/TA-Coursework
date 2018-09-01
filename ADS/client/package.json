@@ -19,12 +19,15 @@
   },
   "dependencies": {
     "@material/button": "^0.35.0",
-    "@material/drawer": "^0.35.0",
     "@material/elevation": "^0.35.0",
     "@material/image-list": "^0.35.0",
     "@material/list": "^0.35.0",
     "@material/ripple": "latest",
+    "@material/rtl": "^0.36.0",
+    "@material/tab-bar": "^0.38.1",
     "@material/textfield": "^0.35.0",
+    "@material/theme": "^0.38.0",
+    "@material/top-app-bar": "^0.38.1",
     "@material/typography": "^0.35.0",
     "normalize.css": "^8.0.0",
     "xsd-schema-validator": "^0.6.0"

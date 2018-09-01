@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<personstore xmlns="https://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="person.xsd">
+  <person>
+		<email>abc@gmail.com</email>
+    <name>Jamshed Issac</name>
+    <password>asdfgh</password>
+    <orders>
+      <order>123</order>
+      <order>456</order>
+    </orders>
+  </person>
+	<person>
+    <email>xyz@gmail.com</email>
+    <name>Jack Vaidya</name>
+    <password>asdfgh</password>
+    <orders>
+      <order>789</order>
+      <order>012</order>
+    </orders>
+  </person>
+</personstore>
