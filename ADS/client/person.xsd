@@ -7,16 +7,9 @@ elementFormDefault="qualified">
 
 <xs:complexType name="personinfo">
   <xs:sequence>
+    <xs:element name="id" type="xs:string" maxOccurs="1"/>
     <xs:element name="email" type="xs:string" maxOccurs="1"/>
     <xs:element name="name" type="xs:string" maxOccurs="1"/>
-    <xs:element name="password" type="xs:string" maxOccurs="1"/>
-    <xs:element name="orders" maxOccurs="1">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="order" type="xs:string" maxOccurs="unbounded" />
-        </xs:sequence>
-      </xs:complexType> 
-    </xs:element>
   </xs:sequence>
 </xs:complexType>
 

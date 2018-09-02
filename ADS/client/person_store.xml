@@ -2,21 +2,13 @@
 <personstore xmlns="https://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="person.xsd">
   <person>
-		<email>abc@gmail.com</email>
+  	<id>p1</id>
+  	<email>jamshedissac@gmail.com</email>
     <name>Jamshed Issac</name>
-    <password>asdfgh</password>
-    <orders>
-      <order>123</order>
-      <order>456</order>
-    </orders>
   </person>
 	<person>
-    <email>xyz@gmail.com</email>
+    <id>p2</id>
+  	<email>jackvaidya@gmail.com</email>
     <name>Jack Vaidya</name>
-    <password>asdfgh</password>
-    <orders>
-      <order>789</order>
-      <order>012</order>
-    </orders>
   </person>
 </personstore>

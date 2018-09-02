@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea name="Output" id="op" cols="70" rows="10"></textarea>
+    <input type="text" name="" id="email">
+    <button onclick="getData()">Click me!</button>
+    <script src="xml_helper.js"></script>
+    <script>
+        function getData() {
+            const email = document.getElementById('email').value;
+            console.log(email);
+            //---------------------------Work Here-----------------------------
+            const xpath = `//x:person[x:email='${email}']`;
+            find('person_store.xml', xpath)
+                .then((data) => {
+                    console.log("Data recieved:",data);
+                    document.getElementById('op').innerHTML = '';
+                    for (let i = 0; i < data.length; i++) {
+                        id = data[i].children[0].firstChild.data;
+                        e = data[i].children[1].firstChild.data;
+                        name = data[i].children[2].firstChild.data;
+                        document.getElementById('op').innerHTML += `\n${id}\t${e}\t${name}`;
+                    }
+                }).catch(console.log);
+        }
+    </script>
+</body>
+
+</html>
