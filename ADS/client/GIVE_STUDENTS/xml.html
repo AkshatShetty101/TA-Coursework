@@ -17,14 +17,14 @@
     <textarea id="personOutput" cols="150" rows="5"></textarea>
     <br/>
     <h4>Get First Person</h4>
-    <textarea id="person1" cols="70" rows="1">//x:person</textarea>
+    <textarea id="person1" cols="70" rows="1">//x:person[1]</textarea>
     <button id="b2" onclick="getPersonData1()">Click me!</button>
     <br/>
     <textarea id="personOutput1" cols="150" rows="5"></textarea>
     <br/>
     <h3>Person Data</h3>
     <h4>Get Name of Person with email = jiyajain@gmail.com</h4>
-    <textarea id="person2" cols="70" rows="1">//x:person</textarea>
+    <textarea id="person2" cols="70" rows="1">//x:person[x:email='jiyajain@gmail.com']</textarea>
     <button id="b3" onclick="getPersonData2()">Click me!</button>
     <br/>
     <textarea id="personOutput2" cols="150" rows="5"></textarea>
@@ -114,16 +114,7 @@
             const xpath = document.getElementById('boot').value;
             find('boot_store.xml', xpath)
                 .then((data) => {
-                    console.log("Data recieved:", data);
-                    document.getElementById('bootOutput').innerHTML = '';
-                    for (let i = 0; i < data.length; i++) {
-                        id = data[i].children[0].firstChild.data;
-                        name = data[i].children[1].firstChild.data;
-                        description = data[i].children[2].firstChild.data;
-                        cost = data[i].children[3].firstChild.data;
-                        boot[id] = { name, description, cost: parseInt(cost) };
-                        document.getElementById('bootOutput').innerHTML += `\n${id}\t${name}\t\t${description}\t\t${cost}`;
-                    }
+                    //-----------------------Work Here-------------------------------------------
                 }).catch(console.log);
         }
 
@@ -131,12 +122,7 @@
             const xpath = document.getElementById('boot1').value;
             find('boot_store.xml', xpath)
                 .then((data) => {
-                    console.log("Data recieved:", data);
-                    document.getElementById('bootOutput1').innerHTML = '';
-                    for (let i = 0; i < data.length; i += 2) {
-                        name = data[i].firstChild.data;
-                        document.getElementById('bootOutput1').innerHTML += `\nName: ${name}\t\tDescription: ${description}`;
-                    }
+                    //-----------------------Work Here-------------------------------------------
                 }).catch(console.log);
         }
 
@@ -144,15 +130,7 @@
             const xpath = document.getElementById('boot2').value;
             find('boot_store.xml', xpath)
                 .then((data) => {
-                    console.log("Data recieved:", data);
-                    document.getElementById('bootOutput2').innerHTML = '';
-                    for (let i = 0; i < data.length; i++) {
-                        id = data[i].children[0].firstChild.data;
-                        name = data[i].children[1].firstChild.data;
-                        description = data[i].children[2].firstChild.data;
-                        cost = data[i].children[3].firstChild.data;
-                        document.getElementById('bootOutput2').innerHTML += `\n${id}\t${name}\t\t${description}\t\t${cost}`;
-                    }
+                    //-----------------------Work Here-------------------------------------------
                 }).catch(console.log);
         }
 
@@ -165,28 +143,7 @@
             let total = 0;
             find('order_store.xml', xpath)
                 .then((data) => {
-                    console.log("Data recieved:", data);
-                    document.getElementById('orderOutput').innerHTML = '';
-                    for (let i = 0; i < data.length; i++) {
-                        id = data[i].children[0].firstChild.data;
-                        personId = data[i].children[1].firstChild.data;
-                        boots = data[i].children[2].children;
-                        document.getElementById('orderOutput').innerHTML += `\nOrderId: ${id}\tPerson: ${JSON.stringify(person[personId].name)}\n`;
-                        b = {}
-                        for (let j = 0; j < boots.length; j++) {
-                            bootId = boots[j].children[0].firstChild.data
-                            quantity = boots[j].children[1].firstChild.data
-                            total += boot[bootId].cost * parseInt(quantity)
-                            b[bootId] = parseInt(quantity);
-                            document.getElementById('orderOutput').innerHTML += `\n\tBoot: ${JSON.stringify(boot[bootId].name)}\t\tQuantity: ${quantity}\tCost: ${boot[bootId].cost * parseInt(quantity)}\n`
-                        }
-                        order[id] = {
-                            personId: personId, boots: b
-                        };
-                    }
-                    console.log(order);
-                    document.getElementById('orderOutput').innerHTML += `\nTotal:${total}\n`
-
+                    //-----------------------Work Here-------------------------------------------
                 }).catch(console.log);
         }
     </script>
