@@ -29,4 +29,24 @@
       </boot>
     </bootInfo>
   </order>
+  <order>
+    <id>o3</id>
+    <personId>p3</personId>
+    <bootInfo>
+      <boot>
+        <id>b2</id>
+        <quantity>1</quantity>
+      </boot>
+    </bootInfo>
+  </order>
+  <order>
+    <id>o4</id>
+    <personId>p1</personId>
+    <bootInfo>
+      <boot>
+        <id>b2</id>
+        <quantity>2</quantity>
+      </boot>
+    </bootInfo>
+  </order>
 </orderstore>

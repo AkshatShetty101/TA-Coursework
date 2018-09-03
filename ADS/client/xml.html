@@ -9,21 +9,21 @@
 </head>
 
 <body>
-    <textarea id="person" cols="70" rows="1"></textarea>
+    <textarea id="person" cols="70" rows="1">//x:person</textarea>
     <button id="b1" onclick="getPersonData()">Click me!</button>
     <br/>
     <br/>
     <textarea id="personOutput" cols="150" rows="10">A</textarea>
     <br/>
     <br/>
-    <textarea id="boot" cols="70" rows="1"></textarea>
+    <textarea id="boot" cols="70" rows="1">//x:boot</textarea>
     <button id="b2" onclick="getBootData()">Click me!</button>
     <br/>
     <textarea id="bootOutput" cols="150" rows="10"></textarea>
     <br/>
 
     <br/>
-    <textarea id="order" cols="70" rows="1"></textarea>
+    <textarea id="order" cols="70" rows="1">//x:order[x:personId='p1']</textarea>
     <button id="b3" onclick="getOrderData()">Click me!</button>
     <br/>
     <textarea id="orderOutput" cols="150" rows="10"></textarea>
@@ -33,6 +33,7 @@
     <script>
         let person = {}
         let boot = {}
+        let order = {}
         function getPersonData() {
             //---------------------------Work Here-----------------------------
             const xpath = document.getElementById('person').value;
@@ -74,6 +75,7 @@
             const xpath = document.getElementById('order').value;
             console.log(person);
             console.log(boot);
+            let total = 0;
             find('order_store.xml', xpath)
                 .then((data) => {
                     console.log("Data recieved:", data);
@@ -86,9 +88,12 @@
                         for (let j = 0; j < boots.length; j++) {
                             bootId = boots[j].children[0].firstChild.data
                             quantity = boots[j].children[1].firstChild.data
-                            document.getElementById('orderOutput').innerHTML += `\n\t${JSON.stringify(boot[bootId])}\t${quantity}\n`
+                            total += boot[bootId].cost * parseInt(quantity)
+                            document.getElementById('orderOutput').innerHTML += `\n\t${JSON.stringify(boot[bootId])}\t${boot[bootId].cost * parseInt(quantity)}\n`
                         }
                     }
+                    document.getElementById('orderOutput').innerHTML += `\nTotal:${total}\n`
+                    
                 }).catch(console.log);
         }
     </script>
