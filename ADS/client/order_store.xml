@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<orderstore xmlns="https://www.w3schools.com" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="order.xsd">
+  <order>
+    <id>o1</id>
+    <personId>p1</personId>
+    <bootInfo>
+      <boot>
+        <id>b1</id>
+        <quantity>2</quantity>
+      </boot>
+      <boot>
+        <id>b4</id>
+        <quantity>1</quantity>
+      </boot>
+    </bootInfo>
+  </order>
+  <order>
+    <id>o2</id>
+    <personId>p2</personId>
+    <bootInfo>
+      <boot>
+        <id>b3</id>
+        <quantity>4</quantity>
+      </boot>
+      <boot>
+        <id>b4</id>
+        <quantity>1</quantity>
+      </boot>
+    </bootInfo>
+  </order>
+</orderstore>

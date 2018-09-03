@@ -3,18 +3,19 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.w3schools.com" 
     xmlns="https://www.w3schools.com" elementFormDefault="qualified">
 
-    <xs:complexType name="personinfo">
+    <xs:complexType name="bootinfo">
         <xs:sequence>
             <xs:element name="id" type="xs:string" maxOccurs="1"/>
-            <xs:element name="email" type="xs:string" maxOccurs="1"/>
             <xs:element name="name" type="xs:string" maxOccurs="1"/>
+            <xs:element name="description" type="xs:string" maxOccurs="1"/>
+            <xs:element name="cost" type="xs:string" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:element name="personstore">
+    <xs:element name="bootstore">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="person" type="personinfo" maxOccurs="unbounded" />
+                <xs:element name="boot" type="bootinfo" maxOccurs="unbounded" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>

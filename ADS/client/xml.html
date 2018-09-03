@@ -9,25 +9,85 @@
 </head>
 
 <body>
-    <textarea name="Output" id="op" cols="70" rows="10"></textarea>
-    <input type="text" name="" id="email">
-    <button onclick="getData()">Click me!</button>
+    <textarea id="person" cols="70" rows="1"></textarea>
+    <button id="b1" onclick="getPersonData()">Click me!</button>
+    <br/>
+    <br/>
+    <textarea id="personOutput" cols="150" rows="10">A</textarea>
+    <br/>
+    <br/>
+    <textarea id="boot" cols="70" rows="1"></textarea>
+    <button id="b2" onclick="getBootData()">Click me!</button>
+    <br/>
+    <textarea id="bootOutput" cols="150" rows="10"></textarea>
+    <br/>
+
+    <br/>
+    <textarea id="order" cols="70" rows="1"></textarea>
+    <button id="b3" onclick="getOrderData()">Click me!</button>
+    <br/>
+    <textarea id="orderOutput" cols="150" rows="10"></textarea>
+    <br/>
+
     <script src="xml_helper.js"></script>
     <script>
-        function getData() {
-            const email = document.getElementById('email').value;
-            console.log(email);
+        let person = {}
+        let boot = {}
+        function getPersonData() {
             //---------------------------Work Here-----------------------------
-            const xpath = `//x:person[x:email='${email}']`;
+            const xpath = document.getElementById('person').value;
+            console.log(xpath);
             find('person_store.xml', xpath)
                 .then((data) => {
-                    console.log("Data recieved:",data);
-                    document.getElementById('op').innerHTML = '';
+                    console.log("Data recieved:", data);
+                    document.getElementById('personOutput').innerHTML = '';
                     for (let i = 0; i < data.length; i++) {
+                        console.log(i);
                         id = data[i].children[0].firstChild.data;
                         e = data[i].children[1].firstChild.data;
                         name = data[i].children[2].firstChild.data;
-                        document.getElementById('op').innerHTML += `\n${id}\t${e}\t${name}`;
+                        person[id] = { email: e, name };
+                        console.log(name);
+                        document.getElementById('personOutput').innerHTML += `\n${id}\t${e}\t${name}`;
+                    }
+                }).catch(console.log);
+        }
+        function getBootData() {
+            //---------------------------Work Here-----------------------------
+            const xpath = document.getElementById('boot').value;
+            find('boot_store.xml', xpath)
+                .then((data) => {
+                    console.log("Data recieved:", data);
+                    document.getElementById('bootOutput').innerHTML = '';
+                    for (let i = 0; i < data.length; i++) {
+                        id = data[i].children[0].firstChild.data;
+                        name = data[i].children[1].firstChild.data;
+                        description = data[i].children[2].firstChild.data;
+                        cost = data[i].children[3].firstChild.data;
+                        boot[id] = { name, description, cost: parseInt(cost) };
+                        document.getElementById('bootOutput').innerHTML += `\n${id}\t${name}\t${description}\t${cost}`;
+                    }
+                }).catch(console.log);
+        }
+        function getOrderData() {
+            //---------------------------Work Here-----------------------------
+            const xpath = document.getElementById('order').value;
+            console.log(person);
+            console.log(boot);
+            find('order_store.xml', xpath)
+                .then((data) => {
+                    console.log("Data recieved:", data);
+                    document.getElementById('orderOutput').innerHTML = '';
+                    for (let i = 0; i < data.length; i++) {
+                        id = data[i].children[0].firstChild.data;
+                        personId = data[i].children[1].firstChild.data;
+                        boots = data[i].children[2].children;
+                        document.getElementById('orderOutput').innerHTML += `\n${id}\t${JSON.stringify(person[personId])}\n`;
+                        for (let j = 0; j < boots.length; j++) {
+                            bootId = boots[j].children[0].firstChild.data
+                            quantity = boots[j].children[1].firstChild.data
+                            document.getElementById('orderOutput').innerHTML += `\n\t${JSON.stringify(boot[bootId])}\t${quantity}\n`
+                        }
                     }
                 }).catch(console.log);
         }
