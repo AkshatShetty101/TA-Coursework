@@ -24,7 +24,7 @@
     <br/>
     <h3>Person Data</h3>
     <h4>Get Name of Person with email = jiyajain@gmail.com</h4>
-    <textarea id="person2" cols="70" rows="1">//x:person</textarea>
+    <textarea id="person2" cols="70" rows="1">//x:person[x:email='jamshedissac@gmail.com']/x:name</textarea>
     <button id="b3" onclick="getPersonData2()">Click me!</button>
     <br/>
     <textarea id="personOutput2" cols="150" rows="5"></textarea>
@@ -38,13 +38,13 @@
     <textarea id="bootOutput" cols="150" rows="10"></textarea>
     <br/>
     <h4>Get Names and Description of all boots</h4>
-    <textarea id="boot1" cols="70" rows="1">//x:boot</textarea>
+    <textarea id="boot1" cols="70" rows="1">//x:boot/x:*[name()='name' or name()='description']</textarea>
     <button id="b5" onclick="getBootData1()">Click me!</button>
     <br/>
     <textarea id="bootOutput1" cols="150" rows="10"></textarea>
     <br/>
     <h4>Get All Boots with price greater than or equal to 325 and less than 425</h4>
-    <textarea id="boot2" cols="70" rows="1">//x:boot</textarea>
+    <textarea id="boot2" cols="70" rows="1">//x:boot[x:cost>=325 and x:cost<=425]</textarea>
     <button id="b6" onclick="getBootData2()">Click me!</button>
     <br/>
     <textarea id="bootOutput2" cols="150" rows="10"></textarea>
