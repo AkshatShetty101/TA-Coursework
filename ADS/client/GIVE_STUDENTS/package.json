@@ -1,0 +1,8 @@
+{
+  "name": "ADS",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "libxmljs": "^0.19.5"
+  }
+}
