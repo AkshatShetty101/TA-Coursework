@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<personstore xmlns="https://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="person.xsd">
+  <person>
+  	<id>p1</id>
+  	<email>jamshedissac@gmail.com</email>
+    <name>Jamshed Issac</name>
+  </person>
+	<person>
+    <id>p2</id>
+  	<email>jackvaidya@gmail.com</email>
+    <name>Jack Vaidya</name>
+  </person>
+</personstore>
