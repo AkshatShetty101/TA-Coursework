@@ -1,6 +1,10 @@
 const children = (xmlNode, attributeName = 'innerHTML') => Array.from(xmlNode.children).map(child => child[attributeName]);
 
-const element = ({name, className = undefined, children = undefined} = {}) => {
+const element = ({
+    name,
+    className = undefined,
+    children = undefined
+} = {}) => {
     let el = document.createElement(name),
         isString = (value) => value instanceof String || typeof value === 'string';
     if (className) {
@@ -19,16 +23,65 @@ const element = ({name, className = undefined, children = undefined} = {}) => {
     return el;
 };
 
-const cell = (values, name = 'td') => element({name: name, classList: 'mdl-data-table__cell', children: values});
+const cell = (values, name = 'td') => element({
+    name: name,
+    className: 'mdl-data-table__cell',
+    children: values
+});
+
+const createOrderTable = (data, boot, person) => {
+    table = element({
+        name: 'table',
+        className: 'mdl-data-table mdl-js-data-table mdl-shadow--2dp'
+    });
+    table.appendChild(element({
+        name:'tr',
+        children: [cell(`Name: ${person.name}`,'th'),cell(``,'td'),cell(`Email: ${person.email}`,'th')]
+    }))
+    total = 0;
+    for (key in data) {
+        orderId = data[key].id;
+        let head = element({
+            name: 'tr',
+            children: ['Name', 'Description', 'Cost'].map(d => cell(d.toString(), 'th'))
+        });
+        let body = []
+        for (k1 in data[key].boots) {
+            b = data[key].boots[k1];
+            total += boot[b.id].cost * b.quantity;
+            body.push(element({
+                name: 'tr',
+                children: [boot[b.id].name, boot[b.id].description, '$' + boot[b.id].cost * b.quantity].map(d => cell(d.toString(), 'td'))
+            }));
+        }
+        table.appendChild(element({
+            name: 'tr',
+            classList: 'mdl-data-table__cell',
+            children: [cell(``, 'td'),cell(`OrderID: ${orderId}`, 'th'),cell(``, 'td')]
+
+        }));
+        table.appendChild(head);
+        for(b of body)
+        table.appendChild(b);
+    }
+    table.appendChild(element({
+        name: 'tr',
+        classList: 'mdl-data-table__cell',
+        children: cell(`Total: $${total}`, 'th')
+    }));
+    return (table);
+}
+
 
 const createTable = (xmlData, dataIsUniform = true) => {
     // Initialization
-    let columnNames = new Set([]), header, body,
+    let columnNames = new Set([]),
+        header, body,
         table = element({
             name: 'table',
             className: 'mdl-data-table mdl-js-data-table mdl-shadow--2dp'
         });
-
+    console.log(xmlData);
     if (dataIsUniform) {
         columnNames = new Set(children(xmlData[0], 'nodeName'));
     } else {
@@ -59,7 +112,6 @@ const createTable = (xmlData, dataIsUniform = true) => {
         body = element({
             name: 'tbody',
             children: Array(xmlData.length / columnNames.size).fill().map(_ => {
-                console.log(1);
                 return element({
                     name: 'tr',
                     children: Array(columnNames.size).fill().map(_ => element({
