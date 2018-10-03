@@ -2,7 +2,36 @@
   "name": "ADS",
   "private": true,
   "version": "0.0.0",
+  "scripts": {
+    "start": "webpack-dev-server --progress --hot"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.28.0",
+    "extract-loader": "^1.0.2",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^6.0.4",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.4.3"
+  },
   "dependencies": {
-    "libxmljs": "^0.19.5"
+    "@material/button": "^0.35.0",
+    "@material/elevation": "^0.35.0",
+    "@material/icon-button": "^0.39.1",
+    "@material/image-list": "^0.35.0",
+    "@material/list": "^0.35.0",
+    "@material/ripple": "latest",
+    "@material/rtl": "^0.36.0",
+    "@material/tab-bar": "^0.38.1",
+    "@material/textfield": "^0.35.2",
+    "@material/theme": "^0.38.0",
+    "@material/top-app-bar": "^0.38.1",
+    "@material/typography": "^0.35.0",
+    "http-server": "^0.11.1",
+    "libxmljs": "^0.19.5",
+    "normalize.css": "^8.0.0"
   }
 }

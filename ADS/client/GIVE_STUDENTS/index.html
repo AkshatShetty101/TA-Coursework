@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soccer Store</title>
+    <link rel="stylesheet" href="./node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="bundle.css">
+</head>
+<body class="mdc-typography">
+<header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start" href="index.html">
+            <span class="mdc-top-app-bar__title">
+                The Football Store
+            </span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <div class="mdc-tab-bar" role="tablist">
+                <div class="mdc-tab-scroller">
+                    <div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll">
+                        <div class="mdc-tab-scroller__scroll-content">
+                            <a class="mdc-tab nav-link" role="tab" aria-selected="false" tabindex="-1"
+                               href="boots.html">
+                                <span class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">
+                                        Boots
+                                    </span>
+                                    <span class="mdc-tab-indicator">
+                                        <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                    </span>
+                                </span>
+                                <span class="mdc-tab__ripple mdc-ripple-upgraded"></span>
+                            </a>
+                            <a class="mdc-tab nav-link" role="tab" aria-selected="false" tabindex="0"
+                               href="customers.html">
+                                    <span class="mdc-tab__content">
+                                        <span class="mdc-tab__text-label">
+                                            Customers
+                                        </span>
+                                        <span class="mdc-tab-indicator">
+                                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                        </span>
+                                    </span>
+                                <span class="mdc-tab__ripple mdc-ripple-upgraded"></span>
+                            </a>
+                            <a class="mdc-tab nav-link" role="tab" aria-selected="false" tabindex="0"
+                               href="orders.html">
+                                    <span class="mdc-tab__content">
+                                        <span class="mdc-tab__text-label">
+                                            Orders
+                                        </span>
+                                        <span class="mdc-tab-indicator">
+                                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                        </span>
+                                    </span>
+                                <span class="mdc-tab__ripple mdc-ripple-upgraded"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</header>
+<div class="content-area">
+    <div class="content">
+        <h5 class="mdc-typography--headline5">1. Fetch All People</h5>
+        <div class="input">
+            <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
+                <input type="text" id="fetchAllPeople--input" class="mdc-text-field__input" value="//x:person"/>
+                <label for="fetchAllPeople--input" class="mdc-floating-label">
+                    XPath Query
+                </label>
+                <div class="mdc-notched-outline">
+                    <svg>
+                        <path class="mdc-notched-outline__path"/>
+                    </svg>
+                </div>
+                <div class="mdc-notched-outline__idle"></div>
+            </div>
+            <button class="mdc-icon-button material-icons" onclick="fetchAllPeople('fetchAllPeople')">search</button>
+        </div>
+        <br/><br/>
+        <div class="output" id="fetchAllPeople--output"></div>
+    </div>
+    <div class="content">
+        <h5 class="mdc-typography--headline5">2. Fetch First Person</h5>
+        <div class="input">
+            <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
+                <input type="text" id="fetchFirstPerson--input" class="mdc-text-field__input"/>
+                <label for="fetchFirstPerson--input" class="mdc-floating-label">
+                    XPath Query
+                </label>
+                <div class="mdc-notched-outline">
+                    <svg>
+                        <path class="mdc-notched-outline__path"/>
+                    </svg>
+                </div>
+                <div class="mdc-notched-outline__idle"></div>
+            </div>
+            <button class="mdc-icon-button material-icons" onclick="fetchFirstPerson('fetchFirstPerson')">search
+            </button>
+        </div>
+        <br/><br/>
+        <div class="output" id="fetchFirstPerson--output"></div>
+    </div>
+    <div class="content">
+        <h5 class="mdc-typography--headline5">3. Fetch Name of Person with email = jiyajain@gmail.com</h5>
+        <div class="input">
+            <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
+                <input type="text" id="fetchNameOfPerson--input" class="mdc-text-field__input"/>
+                <label for="fetchNameOfPerson--input" class="mdc-floating-label">
+                    XPath Query
+                </label>
+                <div class="mdc-notched-outline">
+                    <svg>
+                        <path class="mdc-notched-outline__path"/>
+                    </svg>
+                </div>
+                <div class="mdc-notched-outline__idle"></div>
+            </div>
+            <button class="mdc-icon-button material-icons" onclick="fetchNameOfPerson('fetchNameOfPerson')">search
+            </button>
+        </div>
+        <br/><br/>
+        <div class="output" id="fetchNameOfPerson--output"></div>
+    </div>
+    <div class="content">
+        <h5 class="mdc-typography--headline5">4. Fetch All Boots</h5>
+        <div class="input">
+            <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
+                <input type="text" id="fetchAllBoots--input" class="mdc-text-field__input"/>
+                <label for="fetchAllBoots--input" class="mdc-floating-label">
+                    XPath Query
+                </label>
+                <div class="mdc-notched-outline">
+                    <svg>
+                        <path class="mdc-notched-outline__path"/>
+                    </svg>
+                </div>
+                <div class="mdc-notched-outline__idle"></div>
+            </div>
+            <button class="mdc-icon-button material-icons" onclick="fetchAllBoots('fetchAllBoots')">search</button>
+        </div>
+        <br/><br/>
+        <div class="output" id="fetchAllBoots--output"></div>
+    </div>
+    <div class="content">
+        <h5 class="mdc-typography--headline5">5. Fetch Name and Description of All Boots</h5>
+        <div class="input">
+            <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
+                <input type="text" id="fetchNameAndDescriptionOfAllBoots--input" class="mdc-text-field__input"/>
+                <label for="fetchNameAndDescriptionOfAllBoots--input" class="mdc-floating-label">
+                    XPath Query
+                </label>
+                <div class="mdc-notched-outline">
+                    <svg>
+                        <path class="mdc-notched-outline__path"/>
+                    </svg>
+                </div>
+                <div class="mdc-notched-outline__idle"></div>
+            </div>
+            <button class="mdc-icon-button material-icons"
+                    onclick="fetchNameAndDescriptionOfAllBoots('fetchNameAndDescriptionOfAllBoots')">search
+            </button>
+        </div>
+        <br/><br/>
+        <div class="output" id="fetchNameAndDescriptionOfAllBoots--output"></div>
+    </div>
+    <div class="content">
+        <h5 class="mdc-typography--headline5">6. Fetch All Boots with price greater than or equal to 325 and less than
+            425</h5>
+        <div class="input">
+            <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
+                <input type="text" id="fetchBootsWithinPriceRange--input" class="mdc-text-field__input"/>
+                <label for="fetchBootsWithinPriceRange--input" class="mdc-floating-label">
+                    XPath Query
+                </label>
+                <div class="mdc-notched-outline">
+                    <svg>
+                        <path class="mdc-notched-outline__path"/>
+                    </svg>
+                </div>
+                <div class="mdc-notched-outline__idle"></div>
+            </div>
+            <button class="mdc-icon-button material-icons"
+                    onclick="fetchBootsWithinPriceRange('fetchBootsWithinPriceRange')">search
+            </button>
+        </div>
+        <br/><br/>
+        <div class="output" id="fetchBootsWithinPriceRange--output"></div>
+    </div>
+    <div class="content">
+        <h5 class="mdc-typography--headline5">6. Fetch All Orders of Person with id = p1</h5>
+        <div class="input">
+            <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
+                <input type="text" id="fetchOrdersOfPerson--input" class="mdc-text-field__input"/>
+                <label for="fetchOrdersOfPerson--input" class="mdc-floating-label">
+                    XPath Query
+                </label>
+                <div class="mdc-notched-outline">
+                    <svg>
+                        <path class="mdc-notched-outline__path"/>
+                    </svg>
+                </div>
+                <div class="mdc-notched-outline__idle"></div>
+            </div>
+            <button class="mdc-icon-button material-icons"
+                    onclick="fetchOrdersOfPerson('fetchOrdersOfPerson')">search
+            </button>
+        </div>
+        <br/><br/>
+        <div class="output" id="fetchOrdersOfPerson--output"></div>
+    </div>
+</div>
+
+<script src="bundle.js" async></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="xml_helper.js"></script>
+<script src="table.js"></script>
+<script>
+    const showOutput = (output, outputDiv) => {
+        if (outputDiv.hasChildNodes()) {
+            outputDiv.replaceChild(output, outputDiv.firstChild);
+        } else {
+            outputDiv.appendChild(output);
+        }
+    };
+
+    function fetchAllPeople(id) {
+        const xpath = document.getElementById(id + '--input').value;
+        find('http://127.0.0.1:8081/person_store.xml', xpath)
+            .then((xmlData) => {
+                let output = createTable(xmlData),
+                    outputDiv = document.getElementById(id + '--output');
+                showOutput(output, outputDiv);
+            }).catch(console.log);
+    }
+
+    function fetchFirstPerson(id) {
+        const xpath = document.getElementById(id + '--input').value;
+        find('http://127.0.0.1:8081/person_store.xml', xpath)
+            .then((xmlData) => {
+                /*
+                * Aggregate Data Here
+                * */
+                // showOutput(output, outputDiv);
+            }).catch(console.log);
+    }
+
+    function fetchNameOfPerson(id) {
+        const xpath = document.getElementById(id + '--input').value;
+        find('http://127.0.0.1:8081/person_store.xml', xpath)
+            .then((xmlData) => {
+                /*
+                 * Aggregate Data Here
+                 * */
+                // showOutput(output, outputDiv);
+            }).catch(console.log);
+    }
+
+    function fetchAllBoots(id) {
+        const xpath = document.getElementById(id + '--input').value;
+        find('http://127.0.0.1:8081/boot_store.xml', xpath)
+            .then((xmlData) => {
+                /*
+                 * Aggregate Data Here
+                 * */
+                // showOutput(output, outputDiv);
+            }).catch(console.log);
+    }
+
+    function fetchNameAndDescriptionOfAllBoots(id) {
+        const xpath = document.getElementById(id + '--input').value;
+        find('http://127.0.0.1:8081/boot_store.xml', xpath)
+            .then((xmlData) => {
+                /*
+                 * Aggregate Data Here
+                 * */
+                // showOutput(output, outputDiv);
+            }).catch(console.log);
+    }
+
+    function fetchBootsWithinPriceRange(id) {
+        const xpath = document.getElementById(id + '--input').value;
+        find('http://127.0.0.1:8081/boot_store.xml', xpath)
+            .then((xmlData) => {
+                /*
+                 * Aggregate Data Here
+                 * */
+                // showOutput(output, outputDiv);
+            }).catch(console.log);
+    }
+
+    function fetchOrdersOfPerson(id) {
+        /*
+         * Aggregate Data Here
+         * */
+    }
+</script>
+</body>
+</html>
