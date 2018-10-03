@@ -10,12 +10,23 @@
 </head>
 
 <body>
-
+    <p>
+        Tasks:<br/>
+        1. Create a firebase account<br/>
+        2. Add base data of order table to firebase <br/>
+        3. Plan schema while doing so<br/><br/>
+        Queries to make:<br/>   
+        1. Add new order to firebase made by one of the existing people<br/>
+        2. Get order by personId<br/>
+        3. Get all Orders<br/>
+        4.  Get orders where number of boots purchase is greater than 3<br/>
+        5. Get all orders where only one type of boot is purchased<br/>
+    </p>
+    <input type="text" id='input' placeholder="Enter Person ID">
+    <button type="button" onclick='getOrdersOfPerson()' id="done-button">Get Orders</button>
     <div id="test">
 
     </div>
-    <input type="file" name="fs" id="fileupload" />
-    <button type="button" onclick="lick()" id="done-button">Convert to Blob (look in the console)</button>
 
     <!-- Firebase App is always required and must be first -->
     <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase-app.js"></script>
@@ -29,35 +40,10 @@
 
     <!-- Comment out (or don't include) services that you don't want to use -->
     <!-- <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script> -->
-
+    <script src="xml_helper.js"></script>
     <script>
-        function lick() {
-            // var oReq = new XMLHttpRequest();
-            // oReq.open("POST", url, true);
-            // oReq.onload = function (oEvent) {
-            //     // Uploaded.
-            // };
-            var file = $('#fileupload')[0].files[0];
-            console.log(file);
-            // var formData = new FormData();
-            // formData.append(file);
-            $.ajax({
-                url: "http://localhost:8080/a",
-                type: "POST",
-                crossDomain: true,
-                data: file,
-                processData: false,
-                contentType: 'application/json',
-                success: function (response) {
-                    console.log(response);
-                    // .. do something
-                },
-                error: function (jqXHR, textStatus, errorMessage) {
-                    console.log(errorMessage); // Optional
-                }
-            });
-        }
-
+        let boot = [];
+        let person = [];
         var config = {
             apiKey: "AIzaSyA6rgyF62FhuV--3T3H0uREeSL8YrDJIAA",
             authDomain: "ads-orders.firebaseapp.com",
@@ -68,6 +54,7 @@
         };
         firebase.initializeApp(config);
         var database = firebase.database();
+
         function writeUserData(orderId, boots, personId) {
             firebase.database().ref().push({
                 id: orderId,
@@ -86,18 +73,73 @@
 
         function getOrdersOfPerson(personId) {
             myOrders = [];
-            firebase.database().ref().orderByChild("personId").equalTo('akshatshetty2908@gmail.com').on('value', (data) => {
-                document.getElementById('test').innerHTML = JSON.stringify(data.val());
-                console.log(data.val());
-            });
+            elem = document.getElementById('test');
+            elem.innerHTML = "";
+            firebase.database().ref().orderByChild("personId").equalTo(document.getElementById('input').value).on(
+                'value', (data) => {
+                    x = data.val();
+                    console.log(x);
+                    if (x === null) {
+                        elem.innerHTML = "No such person!!";
+                    } else {
+                        total = 0;
+                        for (key in x) {
+                            element = x[key];
+                            elem.innerHTML +=
+                                `OrderID:${element.id}\tPerson Data:${JSON.stringify(person[element.personId])}<br/>`;
+                            for (k1 in x[key].boots) {
+                                b = x[key].boots[k1];
+                                console.log(b);
+                                total += boot[b.id].cost * b.quantity;
+                                elem.innerHTML +=
+                                    `&nbsp;&nbsp;&nbsp;&nbsp;Name:${boot[b.id].name}    Description:${boot[b.id].description}   Cost:${boot[b.id].cost*b.quantity}<br/>`;
+                            }
+                        }
+                        elem.innerHTML += `<br/>Total:${total}`;
+
+                    }
+                });
+
         }
 
         function getAllOrderData() {
             firebase.database().ref().once('value').then((data) => {
                 console.log(data.val());
-            })
+            });
         }
-        getOrdersOfPerson('akshatshetty2908@gmail.com');
+
+        const loadPersonAndBootData =()=>{
+            find('person_store.xml', '//x:person')
+            .then((data) => {
+                console.log("Data recieved:", data);
+                for (let i = 0; i < data.length; i++) {
+                    id = data[i].children[0].firstChild.data;
+                    e = data[i].children[1].firstChild.data;
+                    name = data[i].children[2].firstChild.data;
+                    person[id] = {
+                        email: e,
+                        name
+                    };
+                }
+            }).catch(console.log);
+        find('boot_store.xml', '//x:boot')
+            .then((data) => {
+                console.log("Data recieved:", data);
+                for (let i = 0; i < data.length; i++) {
+                    id = data[i].children[0].firstChild.data;
+                    name = data[i].children[1].firstChild.data;
+                    description = data[i].children[2].firstChild.data;
+                    cost = data[i].children[3].firstChild.data;
+                    boot[id] = {
+                        description,
+                        cost,
+                        name
+                    };
+                }
+            }).catch(console.log);
+
+        }
+        loadPersonAndBootData();
     </script>
 </body>
 
