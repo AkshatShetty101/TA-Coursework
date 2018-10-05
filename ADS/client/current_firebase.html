@@ -103,7 +103,7 @@
             <h5 class="mdc-typography--headline5">2. Fetch All Orders</h5>
             <div class="input">
                 <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
-                    <input disabled type="text" id="fetchAllOrders--input" class="mdc-text-field__input" value="" />
+                    <input type="text" id="fetchAllOrders--input" class="mdc-text-field__input" value="p1" />
                     <label for="fetchAllOrders--input" class="mdc-floating-label">
                         Input Nothing
                     </label>
@@ -125,7 +125,7 @@
             <h5 class="mdc-typography--headline5">3. Get orders where number of boots purchase is greater than 'x'</h5>
             <div class="input">
                 <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
-                    <input type="text" id="numberOfBoots--input" class="mdc-text-field__input" value="3" />
+                    <input type="text" id="numberOfBoots--input" class="mdc-text-field__input" value="p1" />
                     <label for="numberOfBoots--input" class="mdc-floating-label">
                         Input the 'x' here (number)
                     </label>
@@ -147,7 +147,7 @@
             <h5 class="mdc-typography--headline5">4. Get all orders where only 'x' type of boot is purchased</h5>
             <div class="input">
                 <div class="mdc-text-field mdc-text-field--outlined" style="width: 100%;">
-                    <input type="text" id="BootType--input" class="mdc-text-field__input" value="1" />
+                    <input type="text" id="BootType--input" class="mdc-text-field__input" value="p1" />
                     <label for="BootType--input" class="mdc-floating-label">
                         Input the 'x' here (number)
                     </label>
@@ -206,17 +206,33 @@
             let boot = [];
             let person = [];
             var config = {
-                apiKey: "apiKey",
-                authDomain: "authDomain",
-                databaseURL: "databaseURL",
-                projectId: "projectId",
-                storageBucket: "storageBucket",
-                messagingSenderId: "messagingSenderId"
+                apiKey: "AIzaSyA6rgyF62FhuV--3T3H0uREeSL8YrDJIAA",
+                authDomain: "ads-orders.firebaseapp.com",
+                databaseURL: "https://ads-orders.firebaseio.com",
+                projectId: "ads-orders",
+                storageBucket: "ads-orders.appspot.com",
+                messagingSenderId: "949999655001"
             };
             firebase.initializeApp(config);
             var database = firebase.database();
 
-            const getOrdersOfPerson = (id) => {
+            function writeUserData(orderId, boots, personId) {
+                firebase.database().ref().push({
+                    id: orderId,
+                    time: new Date().toISOString(),
+                    boots,
+                    personId
+                });
+                console.log('Order is added');
+            }
+
+            function getOrderById(orderId) {
+                firebase.database().ref().orderByChild("id").equalTo(orderId).once('value').then((data) => {
+                    console.log(data.val());
+                });
+            }
+
+            function getOrdersOfPerson(id) {
                 myOrders = [];
                 elem = document.getElementById(`${id}--output`);
                 elem.innerHTML = "";
@@ -228,44 +244,18 @@
                             if (x === null) {
                                 elem.innerHTML = "No such person!!";
                             } else {
-                                /**
-                                 * Work here. Use the table helper functions such as cell and element to create your custom table to fit you data
-                                 * */
+                                total = 0;
+                                let output = createOrderTable(x, boot, person[document.getElementById(`${id}--input`).value]);
+                                elem.appendChild(output);
                             }
                         });
-            }
-            const fetchAllOrders = (id) => {
-                myOrders = [];
-                elem = document.getElementById(`${id}--output`);
-                elem.innerHTML = "";
-                /**
-                 * Work Here
-                 * */
-            }
-            const BootType = (id) => {
-                myOrders = [];
-                elem = document.getElementById(`${id}--output`);
-                elem.innerHTML = "";
-                /**
-                 * Work Here
-                 * */
+
             }
 
-            const addOrder = (id) => {
-                myOrders = [];
-                elem = document.getElementById(`${id}--output`);
-                elem.innerHTML = "";
-                /**
-                 * Work Here
-                 * */
-            }
-            const numberOfBoots = (id) => {
-                myOrders = [];
-                elem = document.getElementById(`${id}--output`);
-                elem.innerHTML = "";
-                /**
-                 * Work Here
-                 * */
+            function getAllOrderData() {
+                firebase.database().ref().once('value').then((data) => {
+                    console.log(data.val());
+                });
             }
         </script>
 </body>
